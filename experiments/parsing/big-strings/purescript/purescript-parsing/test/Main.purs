@@ -4,14 +4,13 @@ module Test.Main (
 
 import Control.Monad.Eff             (Eff)
 import Control.Monad.Eff.Console     (CONSOLE)
-import Control.Monad.Aff.Console     (logShow)
+import Control.Monad.Aff.Console     (log)
 import Data.Array                    ((..))
 import Data.Either                   (Either(..))
 import Data.String                   as String
 import Data.Traversable              (for)
 import Data.Unfoldable               (replicate)
 import Prelude                       (Unit, void, bind, show, ($), (*), (<>))
-import Test.Assert                   (ASSERT, assert')
 import Test.Unit                     (suite, test)
 import Test.Unit.Main                (runTest)
 import Test.Unit.Console             (TESTOUTPUT)
@@ -37,5 +36,5 @@ main = runTest do
   suite "test big strings" do
     test "simple strings" do
       void $ for (1..10) $ \n -> do
-        logShow $ "Test big string of size: " <> show (1024 * n)
+        log $ "Testing string of size: " <> show (1024 * n)
         Assert.equal (runParser (bigString n) testTokenParser.identifier) (Right $ bigString n)
