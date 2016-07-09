@@ -1,0 +1,17 @@
+{
+  "name": "purescript-string-parsers",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-console": "^1.0.0",
+    "purescript-test-unit": "^7.0.0",
+    "purescript-string-parsers": "^1.0.1"
+  },
+  "devDependencies": {
+    "purescript-psci-support": "^1.0.0"
+  }
+}
