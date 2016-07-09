@@ -1,0 +1,19 @@
+{
+  "name": "pursescript-parsing-big-strings",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-console": "^1.0.0",
+    "purescript-parsing": "^1.0.0",
+    "purescript-test-unit": "^7.0.0",
+    "purescript-assert": "^1.0.0",
+    "purescript-free": "^1.0.0"
+  },
+  "devDependencies": {
+    "purescript-psci-support": "^1.0.0"
+  }
+}
