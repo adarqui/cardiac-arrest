@@ -8,11 +8,11 @@ import Control.Monad.Eff.Console             (CONSOLE)
 import Control.Applicative                   ((*>))
 import Data.Array                            ((..))
 import Data.Either                           (Either(..))
-import Data.List                             (List(..))
+import Data.List                             as List
 import Data.String                           as String
 import Data.Traversable                      (for)
 import Data.Unfoldable                       (replicate)
-import Prelude                               (Unit, unit, void, bind, show, ($), (*), (<>), (==))
+import Prelude                               (Unit, unit, void, bind, show, ($), (*), (<>), (==), (<$>))
 import Test.Unit                             (suite, test)
 import Test.Unit.Main                        (runTest)
 import Test.Unit.Console                     (TESTOUTPUT, print)
@@ -49,4 +49,4 @@ main = runTest do
     --
     test "simple lots of words" do
       void $ for (1..10) $ \n -> do
-        Assert.equal (Right (Cons "word " Nil)) (runParser (sepBy1 (string "word ") (string " ")) (bigWords n))
+        Assert.equal (Right $ List.singleton "word") (List.take 1 <$> runParser (sepBy1 (string "word") (string " ")) (bigWords n))
