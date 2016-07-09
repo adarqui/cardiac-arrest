@@ -11,7 +11,7 @@ import Data.Either                   (Either(..))
 import Data.String                   as String
 import Data.Traversable              (for)
 import Data.Unfoldable               (replicate)
-import Prelude                       (Unit, unit, void, bind, show, ($), (*), (<>))
+import Prelude                       (Unit, unit, void, bind, show, ($), (*), (<>), (==))
 import Test.Unit                     (suite, test)
 import Test.Unit.Main                (runTest)
 import Test.Unit.Console             (TESTOUTPUT, print)
@@ -32,10 +32,25 @@ bigString n = String.fromCharArray (replicate (1024*n) 'A')
 
 
 
+bigWords :: Int -> String
+bigWords n = String.joinWith " " (replicate (132*n) "word")
+
+
+
 main :: forall e. Eff (console :: CONSOLE, testOutput :: TESTOUTPUT | e) Unit
 main = runTest do
+
   suite "test big strings" do
-    test "simple strings" do
+
+    -- big strings test fails around ~3072 bytes
+    --
+    test "testing big strings" do
       void $ for (1..10) $ \n -> do
         makeAff $ \_ succeed -> (print $ "\x2192 Testing string of size: " <> show (1024 * n) <> "\n") *> succeed unit
-        Assert.equal (runParser (bigString n) testTokenParser.identifier) (Right $ bigString n)
+        Assert.equal (Right $ bigString n) (runParser (bigString n) testTokenParser.identifier)
+
+    -- words test passes
+    --
+    test "simple lots of words" do
+      void $ for (1..10) $ \n -> do
+        Assert.equal (Right "word") (runParser (bigWords n) testTokenParser.identifier)
