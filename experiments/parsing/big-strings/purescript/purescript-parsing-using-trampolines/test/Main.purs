@@ -127,7 +127,7 @@ main = runTest do
 
   suite "test big strings" do
 
-    -- big strings test fails around ~3072 bytes
+    -- big strings test passes!!! though very slow.
     --
     test "testing big strings" do
       void $ for (1..10) $ \n -> do
