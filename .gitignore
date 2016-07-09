@@ -1,0 +1,29 @@
+# ignore commands that are built/compiled, dependencies, object files etc
+*.o
+*.log
+
+# ada
+b~*
+*.ali
+*.ads
+
+# erlang
+ebin
+.rebar
+*.beam
+*.dump
+
+# haskell
+.stack-work
+.cabal-sandbox
+cabal.sandbox.config
+*.hi
+
+# ocaml / oasis
+_build
+*.byte
+*.data
+
+# rust
+target
+*.lock
