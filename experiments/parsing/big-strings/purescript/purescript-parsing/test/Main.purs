@@ -2,18 +2,19 @@ module Test.Main (
   main
 ) where
 
+import Control.Monad.Aff             (makeAff)
 import Control.Monad.Eff             (Eff)
 import Control.Monad.Eff.Console     (CONSOLE)
-import Control.Monad.Aff.Console     (log)
+import Control.Applicative           ((*>))
 import Data.Array                    ((..))
 import Data.Either                   (Either(..))
 import Data.String                   as String
 import Data.Traversable              (for)
 import Data.Unfoldable               (replicate)
-import Prelude                       (Unit, void, bind, show, ($), (*), (<>))
+import Prelude                       (Unit, unit, void, bind, show, ($), (*), (<>))
 import Test.Unit                     (suite, test)
 import Test.Unit.Main                (runTest)
-import Test.Unit.Console             (TESTOUTPUT)
+import Test.Unit.Console             (TESTOUTPUT, print)
 import Test.Unit.Assert              as Assert
 import Text.Parsing.Parser           (runParser)
 import Text.Parsing.Parser.Language  (haskellDef)
@@ -36,5 +37,5 @@ main = runTest do
   suite "test big strings" do
     test "simple strings" do
       void $ for (1..10) $ \n -> do
-        log $ "Testing string of size: " <> show (1024 * n)
+        makeAff $ \_ succeed -> (print $ "\x2192 Testing string of size: " <> show (1024 * n) <> "\n") *> succeed unit
         Assert.equal (runParser (bigString n) testTokenParser.identifier) (Right $ bigString n)
