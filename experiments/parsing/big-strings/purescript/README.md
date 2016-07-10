@@ -32,8 +32,8 @@ The following libraries are not included in the benchmarks:
 
 ## Results
 
-![Results](/assets/benchmarks.png?raw=true "Results")
+![Results](./assets/benchmarks.png?raw=true "Results")
 
 ## Result HTML
 
-[Results](assets/benchmarks.html)
+[Results](./assets/benchmarks.html)
