@@ -1,0 +1,17 @@
+{
+  "name": "simple-parser",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-test-unit": "^7.0.0",
+    "purescript-simple-parser": "^6.0.1"
+  },
+  "devDependencies": {
+    "purescript-console": "^1.0.0",
+    "purescript-psci-support": "^1.0.0"
+  }
+}
